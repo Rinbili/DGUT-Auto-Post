@@ -27,7 +27,7 @@ def post_form():
                               ).search(html).group(1)
     execution = re.compile("name=\"execution\" value=\"(.*?)\"", re.MULTILINE | re.DOTALL
                            ).search(html).group(1)
-    with os.popen('node ./temp \"{0}\" \"{1}\"'.format(pw, encrypt_salt)) as nodejs:
+    with os.popen('node ./encrypt.js \"{0}\" \"{1}\"'.format(pw, encrypt_salt)) as nodejs:
         password = nodejs.read().replace('\n', '')
 
     # getToken
