@@ -3,21 +3,24 @@
 
 ## Usage
 - Fork本项目  
-- Actions中启用workflow  
+- Actions中启用workflow
 - 打开Settings>>Secrect>>Actions>>New repository secret
 ```
-(Name)     （Secret）
+(Name)         （Secret）
 //添加以下几个
-USERNAME    (学号/工号)
-PASSWORD    (密码)
-PUSHKEY     (PushDeer的PushKey)
-SENDKEY     (Server酱的SendKey)
+USERNAME        (学号/工号)
+PASSWORD        (密码)
+PUSHKEY         (PushDeer的PushKey)
+SENDKEY         (Server酱的SendKey)
+GITHUB_TOKEN    (Personal access token)
 ```
 ##### PushDeer：
 - [获取PushKey](https://www.pushdeer.com/official.html)  
 ##### Server酱：
 - [获取SenKey](https://sct.ftqq.com/)
-
+##### Github token：
+- [获取Personal access token](https://github.com/settings/tokens)
+    
 ## 更新日志  
 #### 2022/09/28 v0.0.5
 - Server酱支持
