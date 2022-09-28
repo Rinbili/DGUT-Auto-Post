@@ -36,5 +36,6 @@ jobs:
         env:
           USERNAME: ${{ secrets.USERNAME }}
           PASSWORD: ${{ secrets.PASSWORD }}
+          PUSHKEY: ${{ secrets.PUSHKEY }}
         run:
           python Auto-Post.py

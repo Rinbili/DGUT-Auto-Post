@@ -1,4 +1,5 @@
 # 东莞理工学院疫情打卡
+## 仅用于学习目的
 
 ## Usage
 - Fork本项目  
@@ -9,9 +10,15 @@
 //添加以下几个
 USERNAME    (学号/工号)
 PASSWORD    (密码)
+PUSHKEY     (PushKey)
 ```
+[获取PushKey](http://www.pushdeer.com/official.html)
 
 ## 更新日志  
+#### 2022/09/28 v0.0.4
+- 调整函数
+- 简单的错误检查
+- PushDeer支持
 #### 2022/09/27 v0.0.1
 - ~~重写一遍~~
 - 从新中央认证系统获取token
