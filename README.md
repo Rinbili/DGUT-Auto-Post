@@ -10,11 +10,17 @@
 //添加以下几个
 USERNAME    (学号/工号)
 PASSWORD    (密码)
-PUSHKEY     (PushKey)
+PUSHKEY     (PushDeer的PushKey)
+SENDKEY     (Server酱的SendKey)
 ```
-[获取PushKey](http://www.pushdeer.com/official.html)
+##### PushDeer：
+- [获取PushKey](https://www.pushdeer.com/official.html)  
+##### Server酱：
+- [获取SenKey](https://sct.ftqq.com/)
 
 ## 更新日志  
+#### 2022/09/28 v0.0.5
+- Server酱支持
 #### 2022/09/28 v0.0.4
 - 调整函数
 - 简单的错误检查

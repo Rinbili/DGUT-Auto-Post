@@ -12,12 +12,13 @@ url = "https://auth.dgut.edu.cn/authserver/oauth2.0/authorize?response_type=code
       "&redirect_uri=https://yqfk-daka.dgut.edu.cn/new_login/dgut&state=yqfk "
 url2 = "https://yqfk-daka-api.dgut.edu.cn/auth"
 url3 = "https://yqfk-daka-api.dgut.edu.cn/record"
+url4 = "https://sctapi.ftqq.com/"
 
 # secret
 username = os.environ["USERNAME"]
 pw = os.environ["PASSWORD"]
 pushkey = os.environ["PUSHKEY"]
-
+sendkey = os.environ["SENDKEY"]
 session = requests.Session()
 
 
@@ -28,6 +29,24 @@ def post_pushdeer(title, message):
         desp += "- " + item + "  \n"
     pushdeer = PushDeer(pushkey=pushkey)
     pushdeer.send_markdown(title, desp=desp)
+
+
+def post_server(title, message):
+    title = "疫情打卡：" + title
+    desp = ""
+    for item in message:
+        desp += "- " + item + "  \n"
+    session.post(url=url4 + sendkey + ".send",
+                 data={
+                     'text': title,
+                     'desp': desp})
+
+
+def post_message(title, message):
+    if sendkey is not None:
+        post_server(title, message)
+    if pushkey is not None:
+        post_pushdeer(title, message)
 
 
 def get_token(message):
@@ -115,13 +134,13 @@ def post_form(access_token, message):
     if user_data_post.status_code != 200:
         if user_data_post.status_code == 400:
             post_msg("提交data表单失败失败:" + user_data_post.json().get("message"), message, 1)
-            post_pushdeer("已经提交过了", message)
+            post_message("已经提交过了", message)
             return
         post_msg("提交data表单失败失败:" + user_data_post.json().get("message"), message, 1)
-        post_pushdeer("提交失败", message)
+        post_message("提交失败", message)
         return
     post_msg("提交data表单成功", message, 0)
-    post_pushdeer("提交成功", message)
+    post_message("提交成功", message)
 
 
 def post_msg(msg, message, level=2):
@@ -135,10 +154,10 @@ def run():
     message = []
     token = get_token(message)
     if token is None:
-        post_pushdeer("token获取失败", message)
+        post_message("token获取失败", message)
     access_token = get_access_token(token, message)
     if access_token is None:
-        post_pushdeer("access_token获取失败", message)
+        post_message("access_token获取失败", message)
     post_form(access_token, message)
 
 
