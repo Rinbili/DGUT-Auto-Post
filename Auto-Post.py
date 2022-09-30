@@ -78,8 +78,20 @@ def post_server(title, message):
 def post_message(title, message):
     if sendkey is not None:
         post_server(title, message)
+    else:
+        post_msg("Server酱密钥为空", status=0)
     if pushkey is not None:
         post_pushdeer(title, message)
+    else:
+        post_msg("Pushdeer密钥为空", status=0)
+
+
+def post_msg(msg, message, level=2, status=1):
+    header = ("[OK]", "[ERROR]", "[INFO]")
+    color = ("\033[32;1m", "\033[31;1m", "\033[36;1m")
+    print(color[level], header[level], msg + "\033[0m")
+    if status == 1:
+        message.append(header[level] + msg)
 
 
 def get_token(message):
@@ -121,6 +133,7 @@ def get_token(message):
     result = urlparse(response.url)
     for item in result.query.split("&"):
         token_data[item.split('=')[0]] = item.split('=', maxsplit=2)[1]
+    token_data["token"] = None
     if token_data.get("code") is not None:
         token_data["token"] = token_data.get("code")
     if token_data["token"] is None:
@@ -172,21 +185,19 @@ def post_form(access_token, message):
     post_message("提交成功", message)
 
 
-def post_msg(msg, message, level=2):
-    header = ("[OK]", "[ERROR]", "[INFO]")
-    color = ("\033[32;1m", "\033[31;1m", "\033[36;1m")
-    print(color[level], header[level], msg + "\033[0m")
-    message.append(header[level] + msg)
-
-
 def run():
     message = []
+    if username is None or pw is None:
+        post_msg("用户名或密码为空", message, 1)
+        return
     token = get_token(message)
     if token is None:
         post_message("token获取失败", message)
+        return
     access_token = get_access_token(token, message)
     if access_token is None:
         post_message("access_token获取失败", message)
+        return
     post_form(access_token, message)
 
 
