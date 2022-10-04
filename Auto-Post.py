@@ -175,8 +175,8 @@ def post_form(access_token, message):
     user_data_post = session.post(url=url3, headers=headers, json={"data": user_data})
     if user_data_post.status_code != 200:
         if user_data_post.status_code == 400:
-            post_msg("提交data表单失败失败:" + user_data_post.json().get("message"), message, 1)
-            post_message("已经提交过了", message)
+            post_msg("提交data表单失败失败:" + user_data_post.json().get("message"), message)
+            # post_message("已经提交过了", message)
             return
         post_msg("提交data表单失败失败:" + user_data_post.json().get("message"), message, 1)
         post_message("提交失败", message)
