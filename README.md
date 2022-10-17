@@ -17,7 +17,7 @@ GITHUB_TOKEN    (Personal access token)(可选，用于自动同步本项目)
 ##### PushDeer：
 - [获取PushKey](https://www.pushdeer.com/official.html)  
 ##### Server酱：
-- [获取SenKey](https://sct.ftqq.com/)
+- [获取SendKey](https://sct.ftqq.com/)
 ##### Github token：
 - [获取Personal access token](https://github.com/settings/tokens)
     
